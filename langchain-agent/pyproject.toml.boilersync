@@ -1,0 +1,35 @@
+[project]
+name = "$${name_kebab}"
+version = "0.1.0"
+description = "$${description}"
+requires-python = ">=$${python_version}"
+dependencies = [
+    $${% block dependencies %}
+    $${% endblock %}
+]
+
+[project.entry-points."agent.graphs"]
+$${name_snake} = "$${name_snake}:get_graphs"
+
+[build-system]
+requires = ["setuptools>=73.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.ruff]
+target-version = "$${python_version_ruff}"
+select = ["E", "F", "I", "B", "W", "C90"]
+ignore = ["C901", "E501", "F821"]
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

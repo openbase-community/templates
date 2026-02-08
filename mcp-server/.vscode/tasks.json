@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run MCP Inspector",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run",
+                "mcp",
+                "dev",
+                "$${name_snake}/mcp.py"
+            ],
+            "options": {
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}",
+                    "UV_ENV_FILE": "${workspaceFolder}/.env"
+                }
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
