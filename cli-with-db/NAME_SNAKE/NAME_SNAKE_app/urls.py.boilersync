@@ -1,0 +1,18 @@
+"""
+URL configuration for $${name_snake}_app.
+"""
+
+from __future__ import annotations
+
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+
+from $${name_snake}.$${name_snake}_app.views import health_check
+
+router = DefaultRouter()
+# Example: router.register(r"items", ItemViewSet)
+
+urlpatterns = [
+    path("health/", health_check, name="health-check"),
+    path("", include(router.urls)),
+]
