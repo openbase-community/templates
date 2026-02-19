@@ -19,7 +19,6 @@
                 }
             },
             "isBackground": true,
-            "required": true,
             "presentation": {
                 "focus": false,
                 "panel": "dedicated",
