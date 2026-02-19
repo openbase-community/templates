@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+$${name_pretty} is a pip package that we are developing.

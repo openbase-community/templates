@@ -1,0 +1,54 @@
+[project]
+name = "$${name_kebab}"
+description = "$${description}"
+authors = [{ name = "$${author_name}", email = "$${author_email}" }]
+readme = "README.md"
+requires-python = ">=$${python_version}"
+dynamic = ["version"]
+dependencies = [
+    $${% block dependencies %}
+    $${% endblock %}
+]
+
+[project.urls]
+Repository = "https://github.com/$${author_github_name}/$${name_kebab}"
+Issues = "https://github.com/$${author_github_name}/$${name_kebab}/issues"
+
+$${% block scripts %}
+$${% endblock %}
+
+[project.optional-dependencies]
+dev = [
+    $${% block dev_dependencies %}
+    "ruff>=0.11.10",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "pytest-mock>=3.14.0",
+    $${% endblock %}
+]
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "${{name_snake}}/_version.py"
+
+[tool.ruff]
+target-version = "$${python_version_ruff}"
+select = ["E", "F", "I", "B", "W", "C90"]
+ignore = ["C901", "E501", "F821"]
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

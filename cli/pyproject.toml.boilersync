@@ -1,0 +1,9 @@
+$${% block scripts %}
+$${ super() }
+$${cli_command} = "$${name_snake}.cli:main"
+$${% endblock %}
+
+$${% block dev_dependencies %}
+$${ super() }
+pyinstaller>=6.9.0
+$${% endblock %}

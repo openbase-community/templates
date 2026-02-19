@@ -1,0 +1,15 @@
+"""
+Django app configuration for $${name_snake}_app.
+"""
+
+from __future__ import annotations
+
+from django.apps import AppConfig
+
+
+class $${name_pascal}AppConfig(AppConfig):
+    """Configuration for the $${name_snake}_app Django application."""
+
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "$${name_snake}.$${name_snake}_app"
+    verbose_name = "$${name_pretty}"

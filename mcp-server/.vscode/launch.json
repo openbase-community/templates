@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MCP Server: $${name_kebab}",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "$${name_snake}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "envFile": "${workspaceFolder}/.env",
+            "python": "${command:python.interpreterPath}"
+        }
+    ]
+}
