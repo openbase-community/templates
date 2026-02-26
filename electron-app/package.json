@@ -106,7 +106,7 @@
     "electron-log": "^5.3.2",
     "electron-updater": "^6.3.9",
     "lucide-react": "^0.575.0",
-    "multi-react": "file:../multi-react",
+    "multi-react": "file:$${multi_react_path}",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0"
