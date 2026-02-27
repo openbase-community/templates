@@ -46,7 +46,7 @@ const configuration: webpack.Configuration = {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
     alias: {
-      // Force a single React instance for linked packages (e.g. multi-react)
+      // Force a single React instance across the workspace.
       react: path.resolve('node_modules/react'),
       'react-dom': path.resolve('node_modules/react-dom'),
     },

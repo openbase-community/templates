@@ -1,8 +1,8 @@
 {
   "name": "$${name_kebab}",
-  "version": "4.6.0",
-  "description": "$${name_pretty}",
-  "homepage": "https://multi.bighelp.ai",
+  "version": "0.1.0",
+  "description": "$${description}",
+  "homepage": "https://github.com/$${author_github_name}/$${name_kebab}",
   "license": "MIT",
   "author": {
     "name": "$${author_name}",

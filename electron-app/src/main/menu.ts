@@ -37,12 +37,6 @@ export default class MenuBuilder {
     return menu;
   }
 
-  openSettings = () => {
-    this.mainWindow.webContents.send('navigate-to-settings');
-    if (this.mainWindow.isMinimized()) this.mainWindow.restore();
-    this.mainWindow.focus();
-  };
-
   setupDevelopmentEnvironment(): void {
     this.mainWindow.webContents.on('context-menu', (_, props) => {
       const { x, y } = props;
@@ -73,11 +67,6 @@ export default class MenuBuilder {
           label: 'Hide $${name_pretty}',
           accelerator: 'Command+H',
           selector: 'hide:',
-        },
-        {
-          label: 'Settings...',
-          accelerator: 'Command+,',
-          click: this.openSettings,
         },
         {
           label: 'Hide Others',
@@ -211,11 +200,6 @@ export default class MenuBuilder {
           {
             label: '&Open',
             accelerator: 'Ctrl+O',
-          },
-          {
-            label: '&Settings',
-            accelerator: 'Ctrl+,',
-            click: this.openSettings,
           },
           {
             label: '&Close',

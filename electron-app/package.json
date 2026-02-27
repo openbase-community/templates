@@ -3,22 +3,18 @@
   "description": "$${description}",
   "keywords": [
     "electron",
-    "boilerplate",
     "react",
     "typescript",
-    "ts",
-    "sass",
     "webpack",
-    "hot",
-    "reload"
+    "hot-reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/$${author_github_name}/$${name_kebab}#readme",
   "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
+    "url": "https://github.com/$${author_github_name}/$${name_kebab}/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/$${author_github_name}/$${name_kebab}.git"
   },
   "license": "MIT",
   "author": {
@@ -42,6 +38,8 @@
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps && npm run build:dll",
     "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "build:mac:dir": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --mac dir --publish never",
+    "install-local-app": "npm run build:mac:dir && node ./.erb/scripts/install-to-applications.js",
     "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never && npm run build:dll",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "prestart": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS=\"-r ts-node/register --no-warnings\" webpack --config ./.erb/configs/webpack.config.main.dev.ts",
@@ -105,11 +103,8 @@
     "electron-debug": "^4.1.0",
     "electron-log": "^5.3.2",
     "electron-updater": "^6.3.9",
-    "lucide-react": "^0.575.0",
-    "multi-react": "file:$${multi_react_path}",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@electron/rebuild": "^3.7.1",
@@ -182,7 +177,7 @@
   },
   "build": {
     "productName": "$${name_pretty}",
-    "appId": "com.example.$${name_kebab}",
+    "appId": "com.$${author_github_name}.$${name_kebab}",
     "asar": true,
     "afterSign": ".erb/scripts/notarize.js",
     "asarUnpack": "**\\*.{node,dll}",
@@ -246,7 +241,7 @@
     }
   },
   "collective": {
-    "url": "https://multi.bighelp.ai/"
+    "url": "https://github.com/$${author_github_name}/$${name_kebab}"
   },
   "devEngines": {
     "runtime": {

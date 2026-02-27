@@ -1,21 +1,19 @@
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../renderer/App';
 
-// Mock the electron preload API
 window.electron = {
-  repoService: {
-    getRepos: jest.fn().mockResolvedValue([]),
-    getRepoStatus: jest.fn().mockResolvedValue('clean'),
-    getConfigPath: jest.fn().mockResolvedValue(''),
-    setConfigPath: jest.fn().mockResolvedValue(undefined),
+  ipcRenderer: {
+    sendMessage: jest.fn(),
+    on: jest.fn(() => () => {}),
+    once: jest.fn(),
   },
-  onNavigateToRepo: jest.fn(() => () => {}),
-  onNavigateToSettings: jest.fn(() => () => {}),
 } as any;
 
 describe('App', () => {
-  it('should render', () => {
-    expect(render(<App />)).toBeTruthy();
+  it('renders template metadata', () => {
+    render(<App />);
+    expect(screen.getByText('$${name_pretty}')).toBeInTheDocument();
+    expect(screen.getByText('$${description}')).toBeInTheDocument();
   });
 });

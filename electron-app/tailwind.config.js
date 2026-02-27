@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     './src/renderer/**/*.{ts,tsx}',
-    './node_modules/multi-react/dist/**/*.{js,mjs}',
+    './src/shared/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
