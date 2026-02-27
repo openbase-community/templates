@@ -1,0 +1,54 @@
+{
+  "children": [
+    {
+      "template": "app-package",
+      "path": "$${api_package_name_snake}",
+      "variables": {
+        "apps": "\"$${api_package_name}.$${django_app_name}\"",
+        "name_snake": "$${api_package_name}"
+      }
+    },
+    {
+      "template": "django-app",
+      "path": "$${api_package_name_snake}/$${api_package_name}/$${django_app_name}",
+      "variables": {
+        "name_snake": "$${django_app_name}",
+        "parent_package_name": "$${api_package_name}",
+        "api_prefix": "$${api_prefix}"
+      }
+    },
+    {
+      "template": "react-app",
+      "path": "$${name_kebab}-react",
+      "condition": "with_frontend",
+      "variables": {
+        "name_snake": "$${name_snake}",
+        "name_pretty": "$${name_pretty}",
+        "github_user": "$${github_user}",
+        "marketing_description": "$${marketing_description}"
+      }
+    }
+  ],
+  "hooks": {
+    "post_init": [
+      {
+        "id": "multi-sync",
+        "run": "multi sync"
+      },
+      {
+        "id": "write-web-env",
+        "run": "python3 scripts/write_web_env.py",
+        "env": {
+          "OPENBASE_WEB_ENV_CONTENT": "$${openbase_web_env_content}",
+          "DOT_ENV_SYMLINK_SOURCE": "$${dot_env_symlink_source}"
+        }
+      }
+    ]
+  },
+  "github": {
+    "create_repo": true,
+    "repo_name": "$${name_kebab}",
+    "private": true,
+    "condition": "with_github"
+  }
+}

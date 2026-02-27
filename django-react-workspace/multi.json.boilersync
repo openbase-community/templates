@@ -1,0 +1,16 @@
+{
+  "repos": [
+    {
+      "url": "https://github.com/openbase-community/web"
+    },
+    {
+      "url": "https://github.com/$${github_user}/$${api_package_name_snake}"
+    }$${% if with_frontend %},
+    {
+      "url": "https://github.com/$${github_user}/$${name_kebab}-react"
+    },
+    {
+      "url": "https://github.com/openbase-community/react-shared"
+    }$${% endif %}
+  ]
+}
