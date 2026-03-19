@@ -2,7 +2,7 @@
   "children": [
     {
       "template": "app-package",
-      "path": "$${api_package_name_snake}",
+      "path": "$${api_package_name_kebab}",
       "variables": {
         "apps": "\"$${api_package_name}.$${django_app_name}\"",
         "name_snake": "$${api_package_name}"
@@ -10,7 +10,7 @@
     },
     {
       "template": "django-app",
-      "path": "$${api_package_name_snake}/$${api_package_name}/$${django_app_name}",
+      "path": "$${api_package_name_kebab}/$${api_package_name}/$${django_app_name}",
       "variables": {
         "name_snake": "$${django_app_name}",
         "parent_package_name": "$${api_package_name}",
