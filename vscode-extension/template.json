@@ -1,0 +1,24 @@
+{
+  "variables": {
+    "description": {
+      "label": "Project Description",
+      "description": "Short description used in the generated README.",
+      "required": true
+    },
+    "github_user": {
+      "label": "GitHub User",
+      "description": "GitHub username or organization that owns the repository.",
+      "required": true
+    },
+    "vscode_extension_description": {
+      "label": "Extension Description",
+      "description": "Marketplace description shown for the VS Code extension.",
+      "required": true
+    },
+    "vscode_publisher": {
+      "label": "VS Code Publisher",
+      "description": "Publisher identifier used for packaging and publishing.",
+      "required": true
+    }
+  }
+}
