@@ -12,7 +12,9 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "generate-types": "npx openapi-typescript http://localhost/api/schema -o ./src/types/models.d.ts --root-types --root-types-no-schema-prefix"
+    "generate-openapi": "curl -fsSL http://localhost/api/schema -o ./openapi.json",
+    "generate-client": "pnpm run generate-openapi && pnpm exec orval --config ./orval.config.ts",
+    "generate-types": "pnpm run generate-client"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -73,7 +75,7 @@
     "@vitest/ui": "^3.2.4",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
-    "openapi-typescript": "^7.9.1",
+    "orval": "^8.7.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",

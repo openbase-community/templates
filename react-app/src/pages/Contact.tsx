@@ -1,3 +1,4 @@
+import { contactCreate } from "@/api/generated/contact/contact";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -45,14 +46,8 @@ const Contact = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
+      const response = await contactCreate(data);
+      if (response.status === 201) {
         toast({
           title: "Success",
           description:
@@ -60,7 +55,7 @@ const Contact = () => {
         });
         navigate("/");
       } else {
-        const errorData = await response.json().catch(() => ({}));
+        const errorData = response.data as { message?: string };
         toast({
           title: "Something went wrong",
           description:
