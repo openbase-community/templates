@@ -33,16 +33,6 @@
       }
     },
     {
-      "template": "api-client",
-      "path": "api-client",
-      "variables": {
-        "api_client_package_name": "$${api_client_package_name}",
-        "api_client_export_name": "$${api_client_export_name}",
-        "name_pretty": "$${name_pretty}",
-        "name_snake": "$${name_snake}"
-      }
-    },
-    {
       "template": "react-app",
       "path": "web",
       "condition": "with_frontend",

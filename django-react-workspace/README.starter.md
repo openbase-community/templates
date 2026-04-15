@@ -16,7 +16,7 @@ Common entry points:
 
 - `api`: generated Django app package for project-specific backend code
 - `api-core`: shared Django runtime and settings skeleton
-- `api-client`: generated Orval TypeScript client package
+- `api-client`: local ignored Orval TypeScript client package; run `pnpm --filter $${api_client_package_name} generate-client` after API schema changes
 - `auth-client`: reusable django-allauth React client
 - `ui`: shared React UI package
 - `web`: React frontend
