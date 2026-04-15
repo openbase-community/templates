@@ -22,6 +22,8 @@ Common entry points:
 - `web`: React frontend
 - `deploy`: deployment CLI and Terraform stack
 
+The web package proxies `/api` and `/_allauth` to `VITE_API_BASE_URL`, defaulting to `http://127.0.0.1:8000`, during Vite development. Its dev and build scripts first build the local generated `api-client` package so package exports resolve even when running web commands directly.
+
 ## Deployment
 
 Use the `deploy` repo and the `openbase-deploy` CLI for AWS/Terraform/ECS deployment.
