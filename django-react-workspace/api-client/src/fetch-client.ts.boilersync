@@ -56,6 +56,7 @@ export async function $${api_client_export_name}Fetch<T>(
 
   const fetchImplementation = clientConfig.fetch ?? globalThis.fetch;
   const response = await fetchImplementation(buildUrl(url), {
+    credentials: "include",
     ...options,
     headers,
   });
