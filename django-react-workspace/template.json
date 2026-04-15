@@ -1,4 +1,17 @@
 {
+  "defaults": {
+    "api_package_name": "$${name_snake}_api",
+    "django_app_name": "$${name_snake}",
+    "api_prefix": "/api/",
+    "api_client_package_name": "$${name_kebab}-api-client",
+    "api_client_export_name": "$${name_camel}",
+    "auth_client_package_name": "openbase-auth-client",
+    "ui_package_name": "openbase-ui",
+    "web_package_name": "$${name_kebab}-web",
+    "cdn_base_url": "https://cdn.openbase.app/$${name_kebab}/",
+    "marketing_description": "$${name_pretty}",
+    "with_frontend": true
+  },
   "children": [
     {
       "template": "app-package",
