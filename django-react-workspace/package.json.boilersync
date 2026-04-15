@@ -1,0 +1,9 @@
+{
+  "name": "$${name_kebab}-workspace",
+  "private": true,
+  "packageManager": "pnpm@10.18.0",
+  "scripts": {
+    "dev": "pnpm -r --parallel --stream --filter $${auth_client_package_name} --filter $${api_client_package_name} --filter $${ui_package_name} --filter $${web_package_name} run dev",
+    "build": "pnpm --filter $${auth_client_package_name} build && pnpm --filter $${api_client_package_name} build && pnpm --filter $${ui_package_name} build && pnpm --filter $${web_package_name} build"
+  }
+}

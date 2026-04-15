@@ -12,5 +12,8 @@ dependencies = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[project.entry-points."web.app_packages"]
-$${name_snake} = "$${name_snake}.package_apps:get_apps"
+[project.entry-points."api_core.installed_apps"]
+$${name_snake} = "$${name_snake}.installed_apps:get_installed_apps"
+
+[project.entry-points."api_core.settings"]
+$${name_snake} = "$${name_snake}.settings"

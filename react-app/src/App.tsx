@@ -2,7 +2,8 @@ import {
   AnonymousRoute,
   AuthChangeRedirector,
   AuthContextProvider,
-} from "openbase-react-shared";
+  ProviderCallback,
+} from "$${auth_client_package_name}";
 import {
   Navigate,
   Route,
@@ -27,6 +28,7 @@ function AppRoutes() {
           </AnonymousRoute>
         }
       />
+      <Route path="/account/provider/callback" element={<ProviderCallback />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/settings" element={<Settings />} />

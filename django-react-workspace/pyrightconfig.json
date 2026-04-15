@@ -1,8 +1,7 @@
 {
     "extraPaths": [
-        "web",
-        "openbase-api",
-        "openbase-react"
+        "api",
+        "api-core"
     ],
     "reportUnknownVariableType": false,
     "reportMissingTypeStubs": false,

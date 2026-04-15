@@ -2,6 +2,12 @@
 data/
 .claude/settings.local.json
 .DS_Store
+node_modules/
+.venv/
+.pytest_cache/
+.ruff_cache/
+api-client/
+api-client
 
 # Generated files
 .vscode/launch.json
@@ -10,3 +16,4 @@ data/
 .vscode/extensions.json
 ruff.toml
 CLAUDE.md
+AGENTS.md

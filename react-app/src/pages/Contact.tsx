@@ -1,4 +1,3 @@
-import { contactCreate } from "@/api/generated/contact/contact";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as z from "zod";
@@ -25,14 +23,10 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address",
   }),
-  state: z.string().min(1, {
-    message: "Please select a state",
-  }),
   message: z.string().optional(),
 });
 type FormValues = z.infer<typeof formSchema>;
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
   const form = useForm<FormValues>({
@@ -44,37 +38,12 @@ const Contact = () => {
     },
   });
   const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
-    try {
-      const response = await contactCreate(data);
-      if (response.status === 201) {
-        toast({
-          title: "Success",
-          description:
-            "Your information has been submitted successfully. We'll be in touch soon.",
-        });
-        navigate("/");
-      } else {
-        const errorData = response.data as { message?: string };
-        toast({
-          title: "Something went wrong",
-          description:
-            errorData.message ||
-            "There was an issue submitting your information. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description:
-          "Unable to connect to our servers. Please check your internet connection and try again.",
-        variant: "destructive",
-      });
-      console.error("Error submitting form:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+    toast({
+      title: "Saved",
+      description: "Your message is ready to connect to a backend endpoint.",
+    });
+    console.info("Contact form submitted", data);
+    navigate("/");
   };
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-white to-gray-50 px-4">
@@ -101,7 +70,6 @@ const Contact = () => {
                       <Input
                         placeholder="Enter your full name"
                         className="border-gray-200 focus-visible:ring-primary"
-                        disabled={isSubmitting}
                         {...field}
                       />
                     </FormControl>
@@ -121,7 +89,6 @@ const Contact = () => {
                         type="email"
                         placeholder="Enter your email address"
                         className="border-gray-200 focus-visible:ring-primary"
-                        disabled={isSubmitting}
                         {...field}
                       />
                     </FormControl>
@@ -140,7 +107,6 @@ const Contact = () => {
                       <Textarea
                         placeholder="Enter any additional information"
                         className="border-gray-200 focus-visible:ring-primary resize-none"
-                        disabled={isSubmitting}
                         {...field}
                       />
                     </FormControl>
@@ -151,10 +117,9 @@ const Contact = () => {
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
                 className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               >
-                {isSubmitting ? "Submitting..." : "Submit"}
+                Submit
               </Button>
             </form>
           </Form>

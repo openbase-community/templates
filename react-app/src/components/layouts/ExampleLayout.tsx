@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import UserProfile from "@/components/UserProfile";
 import { Clipboard, Home, PieChart } from "lucide-react";
-import { useFullUser } from "openbase-react-shared";
+import { useUser } from "$${auth_client_package_name}/auth";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const ExampleDashboardLayout: React.FC<ExampleDashboardLayoutProps> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, isLoading } = useFullUser();
+  const user = useUser();
 
   // Navigation items with their respective paths, icons, and titles
   const navItems = [
@@ -83,9 +83,7 @@ const ExampleDashboardLayout: React.FC<ExampleDashboardLayoutProps> = ({
           <header className="bg-white shadow-sm border-b h-16 flex items-center px-6 sticky top-0 z-10">
             <div className="flex-1 flex justify-between items-center">
               <h2 className="text-xl text-gray-900 font-sans">
-                {isLoading
-                  ? "Loading..."
-                  : `Welcome back, ${user?.first_name || "User"}`}
+                Welcome back, {user?.first_name || "User"}
               </h2>
               <div className="flex items-center space-x-1">
                 <UserProfile />

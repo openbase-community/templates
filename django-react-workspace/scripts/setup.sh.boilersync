@@ -8,34 +8,16 @@ ROOT_DIR="$( cd "$SCRIPT_DIR/.." && pwd )"
 # Clone all repos
 pushd "$ROOT_DIR"
 multi sync
+uv sync --all-packages --all-extras
 popd
 
-# Set up Python workspace dependencies
-cat > ${ROOT_DIR}/web/workspace_requirements.txt << EOF2
--e ../$${name_kebab}-api
-EOF2
-
-# Call the web setup script
-pushd ${ROOT_DIR}/web
+# Set up the Django API runtime.
+pushd ${ROOT_DIR}/api-core
 ./scripts/setup
 popd
 
 $${% if with_frontend %}
-# Call the React install scripts
-pushd ${ROOT_DIR}/$${name_kebab}-react
-npm install
-popd
-pushd ${ROOT_DIR}/react-shared
-npm install
-popd
-
-# Link the react-shared package
-pushd ${ROOT_DIR}/react-shared
-npm link
-popd
-pushd ${ROOT_DIR}/$${name_kebab}-react
-npm link openbase-react-shared
-popd
+pnpm install
 $${% endif %}
 
 echo "Setup complete! Please restart your IDE, then you can run your project with the VS Code run button."

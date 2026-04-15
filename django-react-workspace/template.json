@@ -2,15 +2,17 @@
   "children": [
     {
       "template": "app-package",
-      "path": "$${api_package_name_kebab}",
+      "path": "api",
       "variables": {
         "apps": "\"$${api_package_name}.$${django_app_name}\"",
+        "name_kebab": "$${name_kebab}-api",
+        "name_pretty": "$${name_pretty} API",
         "name_snake": "$${api_package_name}"
       }
     },
     {
       "template": "django-app",
-      "path": "$${api_package_name_kebab}/$${api_package_name}/$${django_app_name}",
+      "path": "api/$${api_package_name}/$${django_app_name}",
       "variables": {
         "name_snake": "$${django_app_name}",
         "parent_package_name": "$${api_package_name}",
@@ -18,10 +20,25 @@
       }
     },
     {
+      "template": "api-client",
+      "path": "api-client",
+      "variables": {
+        "api_client_package_name": "$${api_client_package_name}",
+        "api_client_export_name": "$${api_client_export_name}",
+        "name_pretty": "$${name_pretty}",
+        "name_snake": "$${name_snake}"
+      }
+    },
+    {
       "template": "react-app",
-      "path": "$${name_kebab}-react",
+      "path": "web",
       "condition": "with_frontend",
       "variables": {
+        "api_client_package_name": "$${api_client_package_name}",
+        "auth_client_package_name": "$${auth_client_package_name}",
+        "cdn_base_url": "$${cdn_base_url}",
+        "ui_package_name": "$${ui_package_name}",
+        "web_package_name": "$${web_package_name}",
         "name_snake": "$${name_snake}",
         "name_pretty": "$${name_pretty}",
         "github_user": "$${github_user}",
@@ -36,12 +53,9 @@
         "run": "multi sync"
       },
       {
-        "id": "write-web-env",
-        "run": "python3 scripts/write_web_env.py",
-        "env": {
-          "OPENBASE_WEB_ENV_CONTENT": "$${openbase_web_env_content}",
-          "DOT_ENV_SYMLINK_SOURCE": "$${dot_env_symlink_source}"
-        }
+        "id": "pnpm-install",
+        "run": "pnpm install",
+        "allow_failure": true
       }
     ]
   },

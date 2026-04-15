@@ -8,11 +8,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { logout, useFullUser } from "openbase-react-shared";
+import { logout } from "$${auth_client_package_name}";
+import { useUser } from "$${auth_client_package_name}/auth";
 import { useNavigate } from "react-router-dom";
 const UserProfile = () => {
   const navigate = useNavigate();
-  const { user, isLoading } = useFullUser();
+  const user = useUser();
 
   // Get initials for avatar fallback
   const getInitials = () => {
@@ -27,25 +28,18 @@ const UserProfile = () => {
           className="relative h-10 w-10 rounded-full p-0 ml-4"
         >
           <Avatar>
-            {/* You could add a real image here if the API provided one */}
-            <AvatarFallback>{isLoading ? "..." : getInitials()}</AvatarFallback>
+            <AvatarFallback>{getInitials()}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={12} className="w-56">
         <DropdownMenuLabel>
-          {isLoading ? (
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium">Loading user data...</p>
-            </div>
-          ) : (
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium">
-                {user?.first_name} {user?.last_name}
-              </p>
-              <p className="text-xs text-gray-500 font-light">{user?.email}</p>
-            </div>
-          )}
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium">
+              {user?.first_name} {user?.last_name}
+            </p>
+            <p className="text-xs text-gray-500 font-light">{user?.email}</p>
+          </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => navigate("/dashboard/settings")}>

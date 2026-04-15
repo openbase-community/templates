@@ -7,11 +7,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { User } from "lucide-react";
-import { useFullUser } from "openbase-react-shared";
+import { useUser } from "$${auth_client_package_name}/auth";
 import React from "react";
 
 const Settings: React.FC = () => {
-  const { user } = useFullUser();
+  const user = useUser();
 
   return (
     <DashboardLayout>

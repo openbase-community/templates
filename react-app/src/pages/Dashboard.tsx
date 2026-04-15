@@ -1,8 +1,8 @@
 import DashboardLayout from "@/components/layouts/ExampleLayout";
-import { useFullUser } from "openbase-react-shared";
+import { useUser } from "$${auth_client_package_name}/auth";
 
 const Dashboard = () => {
-  const { user, isLoading } = useFullUser();
+  const user = useUser();
 
   return (
     <DashboardLayout>
