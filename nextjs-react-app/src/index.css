@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 165 14% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 165 14% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 165 14% 14%;
+
+    --primary: 153 29% 35%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 170 22% 93%;
+    --secondary-foreground: 165 14% 18%;
+
+    --muted: 180 10% 92%;
+    --muted-foreground: 165 8% 42%;
+
+    --accent: 347 52% 55%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 170 12% 84%;
+    --input: 170 12% 84%;
+    --ring: 153 29% 35%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom tokens */
+    --sage: 153 29% 35%;
+    --sage-light: 170 22% 93%;
+    --clay: 347 52% 55%;
+    --clay-light: 348 65% 96%;
+    --warm-white: 0 0% 98%;
+    --warm-dark: 165 14% 14%;
+    --stone: 165 8% 42%;
+  }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 40 20% 90%;
+    --card: 30 10% 12%;
+    --card-foreground: 40 20% 90%;
+    --popover: 30 10% 8%;
+    --popover-foreground: 40 20% 90%;
+    --primary: 150 25% 45%;
+    --primary-foreground: 30 10% 8%;
+    --secondary: 30 10% 16%;
+    --secondary-foreground: 40 20% 85%;
+    --muted: 30 8% 18%;
+    --muted-foreground: 30 8% 60%;
+    --accent: 16 40% 50%;
+    --accent-foreground: 40 33% 97%;
+    --border: 30 8% 22%;
+    --input: 30 8% 22%;
+    --ring: 150 25% 45%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }

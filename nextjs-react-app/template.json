@@ -1,0 +1,18 @@
+{
+  "defaults": {
+    "description": "Static Next.js React marketing site",
+    "marketing_description": "$${name_pretty} is a fast, SEO-ready static website built with Next.js, React, and Tailwind CSS.",
+    "site_url": "https://$${name_kebab}.com",
+    "hero_eyebrow": "Static Next.js site",
+    "hero_headline": "Launch a polished site without starting from scratch",
+    "hero_description": "A production-ready starting point with static export, metadata, sitemap, robots, responsive sections, and a calm visual system.",
+    "primary_cta_label": "Get started",
+    "secondary_cta_label": "See how it works"
+  },
+  "github": {
+    "create_repo": true,
+    "repo_name": "$${name_kebab}",
+    "private": true,
+    "condition": "with_github"
+  }
+}
