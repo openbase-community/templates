@@ -11,6 +11,7 @@ Run:
 ```
 
 The setup script syncs the Multi workspace, prepares the Django runtime, and installs frontend packages when `with_frontend` is enabled.
+It also scaffolds the full auth screen set from `auth-client` into `web/src/auth/` on first setup, skipping files that already exist.
 
 Common entry points:
 
@@ -21,6 +22,12 @@ Common entry points:
 - `ui`: shared React UI package
 - `web`: React frontend
 - `deploy`: deployment CLI and Terraform stack
+
+To refresh the local auth scaffold later:
+
+```bash
+pnpm auth:overwrite
+```
 
 The web package proxies `/api` and `/_allauth` to `VITE_API_BASE_URL`, defaulting to `http://127.0.0.1:8000`, during Vite development. Its dev and build scripts first build the local generated `api-client` package so package exports resolve even when running web commands directly.
 

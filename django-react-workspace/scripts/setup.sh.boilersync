@@ -18,6 +18,10 @@ popd
 
 $${% if with_frontend %}
 pnpm install
+pnpm --filter openbase-auth-client build
+pnpm auth:generate
+pnpm --filter $${api_client_package_name} build
+pnpm --filter openbase-ui build
 $${% endif %}
 
 echo "Setup complete! Please restart your IDE, then you can run your project with the VS Code run button."

@@ -27,6 +27,7 @@
     "generate-openapi": "uv run --project ../api-core python ../api-core/manage.py spectacular --file ./openapi.json --format openapi-json --validate",
     "generate-client": "pnpm run generate-openapi && pnpm exec orval --config ./orval.config.ts",
     "generate-types": "pnpm run generate-client",
+    "prebuild": "pnpm run generate-client",
     "build": "tsc",
     "dev": "tsc --watch"
   },

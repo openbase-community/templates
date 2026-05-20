@@ -1,3 +1,0 @@
-export * from "./fetch-client";
-export * from "./generated/models";
-export * from "./generated/$${api_client_export_name}";

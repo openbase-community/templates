@@ -1,51 +1,62 @@
 import {
-  AnonymousRoute,
   AuthChangeRedirector,
   AuthContextProvider,
-  ProviderCallback,
+  useConfig,
 } from "$${auth_client_package_name}";
+import { Outlet } from "react-router-dom";
 import {
+  createBrowserRouter,
+  createRoutesFromElements,
   Navigate,
   Route,
-  BrowserRouter as Router,
-  Routes,
+  RouterProvider,
 } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { createAuthRoutes } from "./auth/AuthRoutes";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 
-function AppRoutes() {
+function RootLayout() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/account/login" replace />} />
-      <Route
-        path="/account/login"
-        element={
-          <AnonymousRoute>
-            <Login />
-          </AnonymousRoute>
-        }
-      />
-      <Route path="/account/provider/callback" element={<ProviderCallback />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/dashboard/settings" element={<Settings />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <AuthChangeRedirector>
+      <Outlet />
+    </AuthChangeRedirector>
   );
+}
+
+function AppRouter() {
+  const [router, setRouter] = useState<ReturnType<
+    typeof createBrowserRouter
+  > | null>(null);
+  const config = useConfig();
+
+  useEffect(() => {
+    setRouter(
+      createBrowserRouter(
+        createRoutesFromElements(
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<Navigate to="/account/login" replace />} />
+            {createAuthRoutes(config)}
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        )
+      )
+    );
+  }, [config]);
+
+  return router ? <RouterProvider router={router} /> : null;
 }
 
 function App() {
   return (
-    <Router>
-      <AuthContextProvider>
-        <AuthChangeRedirector>
-          <AppRoutes />
-        </AuthChangeRedirector>
-      </AuthContextProvider>
-    </Router>
+    <AuthContextProvider>
+      <AppRouter />
+    </AuthContextProvider>
   );
 }
 
