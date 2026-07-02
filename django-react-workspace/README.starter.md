@@ -38,29 +38,47 @@ Use the `deploy` repo and the `openbase-deploy` CLI for AWS/Terraform/ECS deploy
 Deployment metadata is stored outside the repo:
 
 ```text
-~/.openbase/deployments/<stack-name>/<environment>/deployment.toml
+~/.openbase/deployments/<stack-name>/deployment.toml
 ```
 
-Initialize metadata for a new stack:
+Initialize backend metadata for a new server stack:
 
 ```bash
-openbase-deploy init-stack $${name_kebab} prod \
-  --web-hostname app.example.com \
-  --cdn-hostname assets.example.com \
-  --cloudflare-zone-name example.com \
+openbase-deploy init server $${name_kebab} \
+  --hostname app.example.com \
+  --image-context-dir ./api-core \
   --web-command "/app/.venv/bin/gunicorn config.asgi:application --log-file - -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000" \
-  --worker-command "/app/.venv/bin/taskiq worker --log-level=INFO --max-threadpool-threads=2 config.taskiq_config:broker config.taskiq_tasks" \
+  --worker-command "/app/.venv/bin/taskiq worker config.taskiq_config:broker config.taskiq_tasks" \
   --deploy-command "/app/.venv/bin/python manage.py migrate" \
-  --app-requirement git+https://github.com/$${github_user}/$${name_kebab}-api
+openbase-deploy image requirements add $${name_kebab} \
+  "git+https://github.com/$${github_user}/$${name_kebab}-api.git@main"
 ```
 
-Then deploy:
+Set required backend config through `openbase-deploy config set` or the
+deployment environment. At minimum production needs `DJANGO_SECRET_KEY`,
+`HEADLESS_JWT_PRIVATE_KEY`, `HEADLESS_JWT_ISSUER`, `DATABASE_URL`, and
+`REDIS_URL`.
+
+Build and deploy the backend:
 
 ```bash
-openbase-deploy build $${name_kebab} prod --app-dir web
-OPENBASE_DEPLOY_DB_PASSWORD='...' openbase-deploy apply $${name_kebab} prod --auto-approve
-CLOUDFLARE_API_TOKEN='...' openbase-deploy cloudflare-setup $${name_kebab} prod
-openbase-deploy deploy $${name_kebab} prod
+openbase-deploy build $${name_kebab} --no-push
+OPENBASE_DEPLOY_DB_PASSWORD='...' \
+  openbase-deploy deploy $${name_kebab} --build-image --apply --cloudflare-setup --auto-approve
 ```
 
-The deployment stack is always web + worker. The deploy one-off command is metadata, so Django migrations are a project choice rather than behavior hard-coded into `openbase-deploy`.
+If the frontend should be hosted separately from the backend, initialize a
+static-site stack:
+
+```bash
+openbase-deploy init static-site $${name_kebab}-web \
+  --hostname assets.example.com \
+  --source-dir ./web \
+  --build-command "pnpm build" \
+  --output-dir dist
+openbase-deploy deploy $${name_kebab}-web --apply --auto-approve
+```
+
+Server and static-site stacks are independent. The deploy one-off command is
+metadata, so Django migrations are a project choice rather than behavior
+hard-coded into `openbase-deploy`.
