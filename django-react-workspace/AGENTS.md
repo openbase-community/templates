@@ -1,8 +1,3 @@
----
-description: Repository structure documentation
-globs:
-alwaysApply: false
----
 This workspace contains multiple repositories:
 
 - `api`: $${name_pretty} API package
