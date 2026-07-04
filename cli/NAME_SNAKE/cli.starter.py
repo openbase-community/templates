@@ -1,13 +1,14 @@
 import click
 
 from $${name_snake}._version import __version__
+
 # from $${name_snake}.cli_helpers import common_command_wrapper
 
 
 def print_version(ctx, param, value):
     if not value or ctx.resilient_parsing:
         return
-    click.echo(f"cursor-multi {__version__}")
+    click.echo(f"$${name_pretty} {__version__}")
     ctx.exit()
 
 

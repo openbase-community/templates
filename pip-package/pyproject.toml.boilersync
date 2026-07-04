@@ -35,14 +35,14 @@ build-backend = "hatchling.build"
 source = "vcs"
 
 [tool.hatch.build.hooks.vcs]
-version-file = "${{name_snake}}/_version.py"
+version-file = "$${name_snake}/_version.py"
 
 [tool.ruff]
 target-version = "$${python_version_ruff}"
-select = ["E", "F", "I", "B", "W", "C90"]
-ignore = ["C901", "E501", "F821"]
 
 [tool.ruff.lint]
+select = ["E", "F", "I", "B", "W", "C90"]
+ignore = ["C901", "E501", "F821"]
 fixable = ["ALL"]
 unfixable = []
 

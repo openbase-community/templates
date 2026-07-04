@@ -1,0 +1,28 @@
+{
+  "extends": "skills",
+  "defaults": {
+    "cli_command": "$${name_kebab}",
+    "cli_description": "$${name_pretty} command-line helper.",
+    "python_version": "3.12",
+    "python_version_ruff": "py312",
+    "publish": false
+  },
+  "children": [
+    {
+      "template": "cli",
+      "path": "cli",
+      "variables": {
+        "author_email": "$${author_email}",
+        "author_github_name": "$${author_github_name}",
+        "author_name": "$${author_name}",
+        "cli_command": "$${cli_command}",
+        "description": "$${cli_description}",
+        "name_pretty": "$${name_pretty} CLI",
+        "name_snake": "$${name_snake}",
+        "publish": "$${publish}",
+        "python_version": "$${python_version}",
+        "python_version_ruff": "$${python_version_ruff}"
+      }
+    }
+  ]
+}

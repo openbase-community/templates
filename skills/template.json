@@ -1,1 +1,8 @@
-{}
+{
+  "defaults": {
+    "repo_name_kebab": "$${name_kebab}",
+    "repo_name_pretty": "$${name_pretty}",
+    "skill_description": "$${name_pretty} workflow.",
+    "skill_trigger_summary": "$${name_pretty}"
+  }
+}
