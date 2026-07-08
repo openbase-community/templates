@@ -24,11 +24,6 @@
       "name": "web",
       "url": "https://github.com/$${github_user}/$${name_kebab}-web",
       "description": "$${name_pretty} React web frontend"
-    }$${% endif %},
-    {
-      "url": "https://github.com/openbase-community/openbase-deploy",
-      "name": "deploy",
-      "description": "OpenBase deployment CLI and reusable Terraform app stack"
-    }
+    }$${% endif %}
   ]
 }

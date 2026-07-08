@@ -16,11 +16,11 @@ import { useUser } from "$${auth_client_package_name}/auth";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-interface ExampleDashboardLayoutProps {
+interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-const ExampleDashboardLayout: React.FC<ExampleDashboardLayoutProps> = ({
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   children,
 }) => {
   const navigate = useNavigate();
@@ -97,4 +97,4 @@ const ExampleDashboardLayout: React.FC<ExampleDashboardLayoutProps> = ({
   );
 };
 
-export default ExampleDashboardLayout;
+export default DashboardLayout;

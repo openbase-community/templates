@@ -5,4 +5,3 @@ This workspace contains multiple repositories:
 - `api-core`: $${name_pretty} Django API core runtime
 - `ui`: Shared OpenBase React UI package
 - `web`: $${name_pretty} React web frontend
-- `deploy`: OpenBase deployment CLI and reusable Terraform app stack

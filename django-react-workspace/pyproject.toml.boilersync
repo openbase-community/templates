@@ -2,9 +2,8 @@
 package = false
 
 [tool.uv.workspace]
-members = ["api", "api-core", "deploy"]
+members = ["api", "api-core"]
 
 [tool.uv.sources]
 $${name_kebab}-api = { workspace = true }
 api-core = { workspace = true }
-openbase-deploy = { workspace = true }

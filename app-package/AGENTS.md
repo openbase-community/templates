@@ -92,6 +92,12 @@ from my_api.my_app.tasks.process_document import process_document
 async_to_sync(process_document.kiq)(self.pk)
 ```
 
+## Tests
+
+Unit tests should live in a `tests/` package.
+
+Name test modules after the source module they test, for example `tests/test_models.py`, `tests/test_serializers.py`, and `tests/test_views.py`. This applies to Django apps too.
+
 ## OpenAI
 
 To use structured outputs with OpenAI, follow this example:

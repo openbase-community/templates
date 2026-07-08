@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/layouts/ExampleLayout";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
 import { useUser } from "$${auth_client_package_name}/auth";
 
 const Dashboard = () => {

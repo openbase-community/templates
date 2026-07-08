@@ -1,6 +1,6 @@
 # $${name_pretty}
 
-This workspace contains a generated Django API package, the shared API core runtime, reusable auth/UI packages, a React web app, and deployment tooling.
+This workspace contains a generated Django API package, the shared API core runtime, reusable auth/UI packages, and a React web app.
 
 ## Local Setup
 
@@ -21,7 +21,6 @@ Common entry points:
 - `auth-client`: reusable django-allauth React client
 - `ui`: shared React UI package
 - `web`: React frontend
-- `deploy`: deployment CLI and Terraform stack
 
 To refresh the local auth scaffold later:
 
@@ -33,7 +32,7 @@ The web package proxies `/api` and `/_allauth` to `VITE_API_BASE_URL`, defaultin
 
 ## Deployment
 
-Use the `deploy` repo and the `openbase-deploy` CLI for AWS/Terraform/ECS deployment.
+Use the shared `openbase-deploy` CLI for AWS/Terraform/ECS deployment.
 
 Deployment metadata is stored outside the repo:
 
