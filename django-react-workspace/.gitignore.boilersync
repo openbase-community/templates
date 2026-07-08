@@ -13,5 +13,3 @@ node_modules/
 .vscode/tasks.json
 .vscode/extensions.json
 ruff.toml
-CLAUDE.md
-AGENTS.md
