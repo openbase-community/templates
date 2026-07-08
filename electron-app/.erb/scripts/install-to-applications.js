@@ -1,9 +1,56 @@
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const projectRoot = path.resolve(__dirname, '..', '..');
 const buildRoot = path.join(projectRoot, 'release', 'build');
 const preferredOutputDirs = ['mac-arm64', 'mac'];
+const quitTimeoutSeconds = 15;
+
+function escapeAppleScriptString(value) {
+  return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+function isAppRunning(appDisplayName) {
+  const escapedName = escapeAppleScriptString(appDisplayName);
+  const output = execFileSync(
+    'osascript',
+    ['-e', `application "${escapedName}" is running`],
+    {
+      encoding: 'utf8',
+    },
+  );
+
+  return output.trim().toLowerCase() === 'true';
+}
+
+function sleep(seconds) {
+  execFileSync('sleep', [String(seconds)]);
+}
+
+function quitAppIfRunning(appDisplayName) {
+  if (!isAppRunning(appDisplayName)) {
+    return;
+  }
+
+  const escapedName = escapeAppleScriptString(appDisplayName);
+  console.log(`${appDisplayName} is running. Quitting before install...`);
+  execFileSync('osascript', ['-e', `tell application "${escapedName}" to quit`], {
+    stdio: 'inherit',
+  });
+
+  for (let second = 0; second < quitTimeoutSeconds; second += 1) {
+    if (!isAppRunning(appDisplayName)) {
+      console.log(`${appDisplayName} closed.`);
+      return;
+    }
+    sleep(1);
+  }
+
+  throw new Error(
+    `${appDisplayName} is still running after ${quitTimeoutSeconds} seconds. Close it and try again.`,
+  );
+}
 
 function listAppBundles(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -35,15 +82,18 @@ function findBuiltAppBundle() {
 
 function installAppToApplications(appBundlePath) {
   const appName = path.basename(appBundlePath);
+  const appDisplayName = path.basename(appBundlePath, '.app');
   const destinationPath = path.join('/Applications', appName);
 
   console.log(`Installing ${appName} to ${destinationPath}...`);
 
+  quitAppIfRunning(appDisplayName);
   fs.rmSync(destinationPath, { recursive: true, force: true });
-  fs.cpSync(appBundlePath, destinationPath, {
-    recursive: true,
-    force: true,
-    dereference: true,
+  execFileSync('cp', ['-R', appBundlePath, '/Applications/'], {
+    stdio: 'inherit',
+  });
+  execFileSync('codesign', ['--force', '--deep', '--sign', '-', destinationPath], {
+    stdio: 'inherit',
   });
 
   console.log(`Installed ${appName} to /Applications`);
