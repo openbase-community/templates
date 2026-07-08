@@ -1,5 +1,6 @@
 {
   "defaults": {
-    "python_requires": ">=$${python_version}"
+    "python_requires": ">=$${python_version}",
+    "python_version_ruff": "py312"
   }
 }
