@@ -7,9 +7,9 @@ on:
 
 jobs:
   publish:
-    # To enable auto publishing to github, update your electron publisher
-    # config in package.json > "build" and remove the conditional below
-    if: ${{ github.repository_owner == 'electron-react-boilerplate' }}
+    # Enable by setting the ELECTRON_AUTO_PUBLISH repository variable to true
+    # after configuring package.json > build.publish and signing secrets.
+    if: ${{ vars.ELECTRON_AUTO_PUBLISH == 'true' }}
 
     runs-on: ${{ matrix.os }}
 
