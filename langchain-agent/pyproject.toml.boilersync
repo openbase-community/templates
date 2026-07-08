@@ -2,7 +2,7 @@
 name = "$${name_kebab}"
 version = "0.1.0"
 description = "$${description}"
-requires-python = ">=$${python_version}"
+requires-python = "$${python_requires}"
 dependencies = [
     $${% block dependencies %}
     $${% endblock %}

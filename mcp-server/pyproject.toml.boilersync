@@ -3,7 +3,7 @@ name = "$${name_kebab}"
 version = "0.1.0"
 description = "$${description}"
 readme = "README.md"
-requires-python = ">=$${python_version}"
+requires-python = "$${python_requires}"
 dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.25.0",

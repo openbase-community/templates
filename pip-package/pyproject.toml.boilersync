@@ -3,7 +3,7 @@ name = "$${name_kebab}"
 description = "$${description}"
 authors = [{ name = "$${author_name}", email = "$${author_email}" }]
 readme = "README.md"
-requires-python = ">=$${python_version}"
+requires-python = "$${python_requires}"
 dynamic = ["version"]
 dependencies = [
     $${% block dependencies %}
