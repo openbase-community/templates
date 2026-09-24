@@ -38,10 +38,12 @@ the source template.
 - `pip-package`: Base Python package scaffold.
 - `react-app`: Vite React app scaffold.
 - `skill-with-cli`: Agent skill repo with an included CLI child project.
-- `skills`: Agent skill collection scaffold.
+- `skills`: Skill repository scaffold for skills intended to be shared or distributed. Not for private project-local skills.
 - `vscode-extension`: VS Code extension scaffold.
 
 ## Template Authoring Notes
+
+For agents choosing the `skills` template: use it only when the requested skill is intended to be shared as a repository. For a private project-local skill, write `.agents/skills/<skill-name>/SKILL.md` directly in the existing project; do not initialize BoilerSync, create a separate repository, add distribution instructions, or install globally merely because the user asked for a skill.
 
 - Put runtime metadata in each template's `template.json`.
 - Use `$${name_snake}`, `$${name_kebab}`, `$${name_pretty}`, and related
