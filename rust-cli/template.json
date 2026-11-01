@@ -1,0 +1,13 @@
+{
+  "defaults": {
+    "description": "$${name_pretty} command-line tool"
+  },
+  "hooks": {
+    "post_init": [
+      {
+        "id": "claude-md-symlink",
+        "run": "ln -sfn AGENTS.md CLAUDE.md"
+      }
+    ]
+  }
+}
